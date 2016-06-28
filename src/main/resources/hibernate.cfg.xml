@@ -40,6 +40,7 @@
 		<mapping class="br.com.drogariav3.domain.Pessoa"/>
 		<mapping class="br.com.drogariav3.domain.Produto"/>
 		<mapping class="br.com.drogariav3.domain.Usuario"/>
+		<mapping class="br.com.drogariav3.domain.Venda"/>
 		
 	</session-factory>
 </hibernate-configuration>

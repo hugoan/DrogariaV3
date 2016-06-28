@@ -36,6 +36,7 @@
 		<mapping class="br.com.drogariav3.domain.Cliente"/>
 		<mapping class="br.com.drogariav3.domain.Estado"/>
 		<mapping class="br.com.drogariav3.domain.Fabricante"/>
+		<mapping class="br.com.drogariav3.domain.Funcionario"/>
 		<mapping class="br.com.drogariav3.domain.Pessoa"/>
 		<mapping class="br.com.drogariav3.domain.Produto"/>
 		

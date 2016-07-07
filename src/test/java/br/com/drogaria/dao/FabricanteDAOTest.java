@@ -84,6 +84,7 @@ public class FabricanteDAOTest {
 		}else{
 			System.out.println("O fabricante " + fabricante.getDescricao() + " foi alterado para: ");
 			fabricante.setDescricao("Neo Química");
+			fabricanteDAO.editar(fabricante);
 			
 			fabricante = fabricanteDAO.buscar(codigo);
 			System.out.println(fabricante);

@@ -11,6 +11,7 @@ import br.com.drogariav3.domain.Fabricante;
 public class FabricanteDAOTest {
 
 	@Test
+	@Ignore
 	public void salvar() {
 		Fabricante fabricante1 = new Fabricante();
 		Fabricante fabricante2 = new Fabricante();
@@ -72,7 +73,7 @@ public class FabricanteDAOTest {
 	}
 	
 	@Test
-	@Ignore
+	
 	public void editar(){
 		long codigo = 2L;
 		
@@ -84,9 +85,10 @@ public class FabricanteDAOTest {
 		}else{
 			System.out.println("O fabricante " + fabricante.getDescricao() + " foi alterado para: ");
 			fabricante.setDescricao("Neo Química");
+			fabricanteDAO.editar(fabricante);
 			
 			fabricante = fabricanteDAO.buscar(codigo);
-			System.out.println(fabricante);
+			System.out.println(fabricante.getDescricao());
 		}
 	}
 }

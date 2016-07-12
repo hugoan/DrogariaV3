@@ -1,6 +1,7 @@
 package br.com.drogaria.dao;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 import org.junit.Ignore;
 import org.junit.Test;
@@ -27,5 +28,36 @@ public class ProdutoDAOTest {
 		produtoDAO.salvar(produto);
 
 		System.out.println("Produto salvo com sucesso");
+	}
+	
+	@Test
+	@Ignore
+	public void listar(){
+		ProdutoDAO produtoDAO = new ProdutoDAO();
+		List<Produto> resultado = produtoDAO.listar();
+		
+		for(Produto produto : resultado){
+			System.out.println("Descrição: " + produto.getDescricao());
+			System.out.println("Fabricante: " + produto.getFabricante().getDescricao());
+			System.out.println("Quantidade: " + produto.getQuantidade());
+			System.out.println("Preço: " + produto.getPreco());
+			System.out.println("");
+		}
+	}
+	
+	@Test
+	public void buscar(){
+		Long codigo = 3L;
+		ProdutoDAO produtoDAO = new ProdutoDAO();
+		Produto produto = produtoDAO.buscar(codigo);
+		
+		if(produto == null){
+			System.out.println("Nenhum registro encontrado.");
+		} else {
+			System.out.println("Descrição: " + produto.getDescricao());
+			System.out.println("Fabricante: " + produto.getFabricante().getDescricao());
+			System.out.println("Quantidade: " + produto.getQuantidade());
+			System.out.println("Preço: " + produto.getPreco());
+		}
 	}
 }

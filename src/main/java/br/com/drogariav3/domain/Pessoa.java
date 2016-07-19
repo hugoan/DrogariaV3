@@ -1,3 +1,4 @@
+
 package br.com.drogariav3.domain;
 
 import javax.persistence.Column;
@@ -30,7 +31,7 @@ public class Pessoa extends GenericDomain {
 	@Column(length = 10, nullable = false)
 	private String cep;
 
-	@Column(length = 10, nullable = false)
+	@Column(length = 10)
 	private String complemento;
 
 	@Column(length = 13, nullable = false)

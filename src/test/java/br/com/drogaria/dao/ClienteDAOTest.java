@@ -104,7 +104,7 @@ public class ClienteDAOTest {
 			cliente.setLiberado(false);
 			clienteDAO.editar(cliente);
 
-			System.out.println("Cliente alterado com sucesso.");
+			System.out.println("Cadastro editado com sucesso.");
 		}
 
 	}

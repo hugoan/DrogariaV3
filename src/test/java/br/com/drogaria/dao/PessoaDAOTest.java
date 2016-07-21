@@ -13,7 +13,7 @@ import br.com.drogariav3.domain.Pessoa;
 public class PessoaDAOTest {
 
 	@Test
-	@Ignore
+	
 	public void salvar() {
 
 		CidadeDAO cidadeDAO = new CidadeDAO();
@@ -24,7 +24,7 @@ public class PessoaDAOTest {
 		} else {
 			Pessoa pessoa = new Pessoa();
 			pessoa.setNome("Nathália Pinto Nóbrega");
-			pessoa.setCpf("000.000.000-00");
+			pessoa.setCpf("004.644.211-10");
 			pessoa.setRg("0000000 DF");
 			pessoa.setRua("QNO 15 Conj A");
 			pessoa.setNumero(new Short("5"));
@@ -33,7 +33,7 @@ public class PessoaDAOTest {
 			pessoa.setComplemento("Casa");
 			pessoa.setTelefone("61 3374-7397");
 			pessoa.setCelular("61 98110-5023");
-			pessoa.setEmail("hugo.nobreg@gmail.com");
+			pessoa.setEmail("nathaliapnobrega@gmail.com");
 			pessoa.setCidade(cidade);
 
 			PessoaDAO pessoaDAO = new PessoaDAO();
@@ -142,6 +142,8 @@ public class PessoaDAOTest {
 			pessoa.setCidade(cidade);
 
 			pessoaDAO.editar(pessoa);
+			
+			System.out.println("Cadastro editado com sucesso.");
 		}
 	}
 }

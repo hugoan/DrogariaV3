@@ -1,4 +1,4 @@
-package br.com.drogaria.dao;
+package br.com.drogariav3.dao;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -13,7 +13,7 @@ import br.com.drogariav3.domain.Produto;
 
 public class ProdutoDAOTest {
 	@Test
-	@Ignore
+	
 	public void salvar() {
 		FabricanteDAO fabricanteDAO = new FabricanteDAO();
 		Fabricante fabricante = fabricanteDAO.buscar(new Long("3"));
@@ -81,6 +81,7 @@ public class ProdutoDAOTest {
 	}
 
 	@Test
+	@Ignore
 	public void editar() {
 		Long codigoProduto = 1L;
 		ProdutoDAO produtoDAO = new ProdutoDAO();

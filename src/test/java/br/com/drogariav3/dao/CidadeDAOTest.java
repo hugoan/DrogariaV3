@@ -1,4 +1,4 @@
-package br.com.drogaria.dao;
+package br.com.drogariav3.dao;
 
 import java.util.List;
 
@@ -13,13 +13,13 @@ import br.com.drogariav3.domain.Estado;
 public class CidadeDAOTest {
 	
 	@Test
-	@Ignore
+	
 	public void salvar(){
 		EstadoDAO estadoDAO = new EstadoDAO();
-		Estado estado = estadoDAO.buscar(1L);
+		Estado estado = estadoDAO.buscar(5L);
 		
 		Cidade cidade = new Cidade();
-		cidade.setNome("Ceilândia");
+		cidade.setNome("Natal");
 		cidade.setEstado(estado);
 		
 		CidadeDAO cidadeDAO = new CidadeDAO();
@@ -72,6 +72,7 @@ public class CidadeDAOTest {
 	}
 	
 	@Test
+	@Ignore
 	public void editar(){
 		Long codigoCidade = 4L;
 		

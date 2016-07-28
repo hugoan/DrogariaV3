@@ -1,4 +1,4 @@
-package br.com.drogaria.dao;
+package br.com.drogariav3.dao;
 
 import java.util.Date;
 import java.util.List;

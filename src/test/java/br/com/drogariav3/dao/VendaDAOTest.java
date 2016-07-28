@@ -1,4 +1,4 @@
-package br.com.drogaria.dao;
+package br.com.drogariav3.dao;
 
 import java.math.BigDecimal;
 import java.util.Date;

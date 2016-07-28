@@ -1,4 +1,4 @@
-package br.com.drogaria.dao;
+package br.com.drogariav3.dao;
 
 import java.util.List;
 
@@ -11,14 +11,30 @@ import br.com.drogariav3.domain.Estado;
 public class EstadoDAOTest {
 
 	@Test
-	@Ignore
+	
 	public void salvar() {
-		Estado estado = new Estado();
-		estado.setNome("São Paulo");
-		estado.setSigla("SP");
+		Estado estado1 = new Estado();
+		Estado estado2 = new Estado();
+		Estado estado3 = new Estado();
+		Estado estado4 = new Estado();
+		
+		estado1.setNome("Distrito Federal");
+		estado1.setSigla("DF");
+		
+		estado2.setNome("Minas Gerais");
+		estado2.setSigla("MG");
+		
+		estado3.setNome("Paraíba");
+		estado3.setSigla("PB");
+		
+		estado4.setNome("Rio Grande do Norte");
+		estado4.setSigla("RN");
 
 		EstadoDAO estadoDAO = new EstadoDAO();
-		estadoDAO.salvar(estado);
+		estadoDAO.salvar(estado1);
+		estadoDAO.salvar(estado2);
+		estadoDAO.salvar(estado3);
+		estadoDAO.salvar(estado4);
 	}
 
 	@Test
@@ -66,6 +82,7 @@ public class EstadoDAOTest {
 	}
 
 	@Test
+	@Ignore
 	public void editar() {
 		Long codigo = 4L;
 

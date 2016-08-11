@@ -67,5 +67,12 @@
 		</dependency>
 
 
+		<!-- PrimeFaces -->
+		<dependency>
+			<groupId>org.primefaces</groupId>
+			<artifactId>primefaces</artifactId>
+			<version>6.0</version>
+		</dependency>
+
 	</dependencies>
 </project>

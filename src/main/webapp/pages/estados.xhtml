@@ -9,6 +9,9 @@
 	<title>Estados</title>
 </h:head>
 <h:body>
+
+	<p:growl id="message" />
+	
 	<h:form>
 		<p:panel header="Estados - Listagem">
 			<p:dataTable emptyMessage="Nenhum registro encontrado."
@@ -18,7 +21,9 @@
 			//Neste caso, para inserir um botão "Novo" no cabeçalho(header)
 			<f:facet name="header">
 					<p:commandButton value="Novo"
-						oncomplete="PF('dlgCadastroEstado').show();" />
+						actionListener="#{estadoBean.novo()}"
+						oncomplete="PF('dlgCadastroEstado').show();" 
+						update=":formCadastroEstado:pnlCadastroEstado"/>
 				</f:facet>
 
 				<p:column headerText="Nome">
@@ -36,18 +41,19 @@
 
 	<p:dialog header="Estados - Cadastro" widgetVar="dlgCadastroEstado"
 		draggable="false" resizable="false" modal="true" closable="false">
-		<h:form>
+		<h:form id="formCadastroEstado">
 
-			<h:panelGrid columns="2">
+			<h:panelGrid id="pnlCadastroEstado" columns="2">
 				<p:outputLabel value="Nome:" />
-				<p:inputText maxlength="50" size="30" />
+				<p:inputText maxlength="50" size="30" value="#{estadoBean.estado.nome}" />
 
 				<p:outputLabel value="Sigla:" />
-				<p:inputText maxlength="2" size="5" />
+				<p:inputText maxlength="2" size="5" value="#{estadoBean.estado.sigla}" />
 			</h:panelGrid>
 
 			<h:panelGrid columns="2">
-				<p:commandButton value="Salvar" actionListener="#{estadoBean.salvar()}"/>
+				<p:commandButton value="Salvar" actionListener="#{estadoBean.salvar()}"
+					update=":message :formCadastroEstado:pnlCadastroEstado"/>
 				<p:commandButton value="Fechar" oncomplete="PF('dlgCadastroEstado').hide();" />
 			</h:panelGrid>
 		</h:form>

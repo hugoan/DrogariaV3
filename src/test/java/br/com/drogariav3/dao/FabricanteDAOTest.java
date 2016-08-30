@@ -9,8 +9,9 @@ import br.com.drogariav3.dao.FabricanteDAO;
 import br.com.drogariav3.domain.Fabricante;
 
 public class FabricanteDAOTest {
-
+	
 	@Test
+	
 	public void salvar() {
 		Fabricante fabricante1 = new Fabricante();
 		Fabricante fabricante2 = new Fabricante();
@@ -48,8 +49,7 @@ public class FabricanteDAOTest {
 		if (fabricante == null) {
 			System.out.println("Nenhum registro encontrado.");
 		} else {
-			System.out.println("O fabricante selecionado é: "
-					+ fabricante.getDescricao());
+			System.out.println("O fabricante selecionado é: " + fabricante.getDescricao());
 		}
 	}
 
@@ -62,32 +62,55 @@ public class FabricanteDAOTest {
 		Fabricante fabricante = fabricanteDAO.buscar(codigo);
 
 		if (fabricante == null) {
-			System.out
-					.println("Nenhum registro encontrado");
+			System.out.println("Nenhum registro encontrado");
 		} else {
 			fabricanteDAO.excluir(fabricante);
-			System.out.println("O fabricante " + fabricante.getDescricao()
-					+ " foi removido com sucesso!");
+			System.out.println("O fabricante " + fabricante.getDescricao() + " foi removido com sucesso!");
 		}
 	}
-	
+
 	@Test
 	@Ignore
-	public void editar(){
+	public void editar() {
 		long codigo = 2L;
-		
+
 		FabricanteDAO fabricanteDAO = new FabricanteDAO();
 		Fabricante fabricante = fabricanteDAO.buscar(codigo);
-		
-		if(fabricante == null){
+
+		if (fabricante == null) {
 			System.out.println("Nenhum registro encontrado.");
-		}else{
+		} else {
 			System.out.println("O fabricante " + fabricante.getDescricao() + " foi alterado para: ");
 			fabricante.setDescricao("Neo Química");
 			fabricanteDAO.editar(fabricante);
-			
+
 			fabricante = fabricanteDAO.buscar(codigo);
 			System.out.println(fabricante);
 		}
 	}
+
+	
+	@Test
+	@Ignore
+	public void mergeIncluir() {
+		Fabricante fabricante = new Fabricante();
+
+		fabricante.setDescricao("Fabricante ABC");
+
+		FabricanteDAO fabricanteDAO = new FabricanteDAO();
+		fabricanteDAO.merge(fabricante);
+
+	}
+
+	
+	@Test
+	@Ignore
+	public void mergeEditar() {
+		FabricanteDAO fabricanteDAO = new FabricanteDAO();
+		Fabricante fabricante = fabricanteDAO.buscar(1L);
+
+		fabricante.setDescricao("Fabricante DEF");
+		fabricanteDAO.merge(fabricante);
+	}
+
 }

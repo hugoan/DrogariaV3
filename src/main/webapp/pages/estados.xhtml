@@ -15,7 +15,8 @@
 	<h:form>
 		<p:panel header="Estados - Listagem">
 			<p:dataTable emptyMessage="Nenhum registro encontrado."
-				paginator="true">
+				paginator="true"
+				value="#{estadoBean.estados}" var="estado">
 			
 			//Comando para alterar ação de um componente JSF
 			//Neste caso, para inserir um botão "Novo" no cabeçalho(header)
@@ -27,9 +28,11 @@
 				</f:facet>
 
 				<p:column headerText="Nome">
+					<h:outputText value="#{estado.nome}" />
 				</p:column>
 
 				<p:column headerText="Sigla">
+					<h:outputText value="#{estado.sigla}" />
 				</p:column>
 
 				<p:column headerText="Opções">

@@ -16,7 +16,7 @@ public class CidadeDAOTest {
 	
 	public void salvar(){
 		EstadoDAO estadoDAO = new EstadoDAO();
-		Estado estado = estadoDAO.buscar(5L);
+		Estado estado = estadoDAO.buscar(4L);
 		
 		Cidade cidade = new Cidade();
 		cidade.setNome("Natal");

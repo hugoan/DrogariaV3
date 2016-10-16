@@ -11,34 +11,55 @@
 <h:body>
 
 	<p:growl id="message" />
-	
-	<h:form>
+
+	<h:form id="frmListagem">
 		<p:panel header="Estados - Listagem">
-			<p:dataTable emptyMessage="Nenhum registro encontrado."
-				paginator="true"
-				value="#{estadoBean.estados}" var="estado">
+			<p:dataTable id="tblListagem"
+				emptyMessage="Nenhum registro encontrado." paginator="true"
+				value="#{estadoBean.estados}" var="estado" rows="10">
 			
 			//Comando para alterar ação de um componente JSF
 			//Neste caso, para inserir um botão "Novo" no cabeçalho(header)
 			<f:facet name="header">
-					<p:commandButton value="Novo"
-						actionListener="#{estadoBean.novo()}"
-						oncomplete="PF('dlgCadastroEstado').show();" 
-						update=":formCadastroEstado:pnlCadastroEstado"/>
+					<p:commandButton value="Novo" actionListener="#{estadoBean.novo()}"
+						oncomplete="PF('dlgCadastroEstado').show();"
+						update=":formCadastroEstado:pnlCadastroEstado" />
 				</f:facet>
 
-				<p:column headerText="Nome">
+				<p:column headerText="Nome" sortBy="#{estado.nome}"
+					filterBy="#{estado.nome}">
 					<h:outputText value="#{estado.nome}" />
 				</p:column>
 
-				<p:column headerText="Sigla">
+				<p:column headerText="Sigla" sortBy="#{estado.sigla}"
+					filterBy="#{estado.sigla}">
 					<h:outputText value="#{estado.sigla}" />
 				</p:column>
 
 				<p:column headerText="Opções">
+					<p:commandButton icon="ui-icon-trash"
+						actionListener="#{estadoBean.excluir}"
+						update=":message :frmListagem:tblListagem">
+						<p:confirm header="Confirmação" message="Deseja excluir o estado?"
+							icon="ui-icon-alert" />
+						<f:attribute name="estadoSelecionado" value="#{estado}" />
+					</p:commandButton>
+					<p:commandButton icon="ui-icon-pencil"
+						actionListener="#{estadoBean.editar}"
+						update=":formCadastroEstado:pnlCadastroEstado"
+						oncomplete="PF('dlgCadastroEstado').show();">
+						<f:attribute name="estadoSelecionado" value="#{estado}" />
+					</p:commandButton>
 				</p:column>
 
 			</p:dataTable>
+
+			<p:confirmDialog global="true">
+				<p:commandButton value="Sim" type="button"
+					styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+				<p:commandButton value="Não" type="button"
+					styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+			</p:confirmDialog>
 		</p:panel>
 	</h:form>
 
@@ -48,16 +69,20 @@
 
 			<h:panelGrid id="pnlCadastroEstado" columns="2">
 				<p:outputLabel value="Nome:" />
-				<p:inputText maxlength="50" size="30" value="#{estadoBean.estado.nome}" />
+				<p:inputText maxlength="50" size="30"
+					value="#{estadoBean.estado.nome}" />
 
 				<p:outputLabel value="Sigla:" />
-				<p:inputText maxlength="2" size="5" value="#{estadoBean.estado.sigla}" />
+				<p:inputText maxlength="2" size="5"
+					value="#{estadoBean.estado.sigla}" />
 			</h:panelGrid>
 
 			<h:panelGrid columns="2">
-				<p:commandButton value="Salvar" actionListener="#{estadoBean.salvar()}"
-					update=":message :formCadastroEstado:pnlCadastroEstado"/>
-				<p:commandButton value="Fechar" oncomplete="PF('dlgCadastroEstado').hide();" />
+				<p:commandButton value="Salvar"
+					actionListener="#{estadoBean.salvar()}"
+					update=":message :formCadastroEstado:pnlCadastroEstado :frmListagem:tblListagem" />
+				<p:commandButton value="Fechar"
+					oncomplete="PF('dlgCadastroEstado').hide();" />
 			</h:panelGrid>
 		</h:form>
 

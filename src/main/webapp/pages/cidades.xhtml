@@ -9,20 +9,28 @@
 	<title>Cidades</title>
 </h:head>
 <h:body>
-	<h:form>
-		<p:panel header="Cidades - Listagem">
+	<p:growl id="message" />
+	<h:form id="frmListagemCidade">
+		<p:panel id="pnlListagemCidade" header="Cidades - Listagem">
 			<p:dataTable emptyMessage="Nenhum registro encontrado."
-				paginator="true">
+				paginator="true" value="#{cidadeBean.cidades}" var="cidade" rows="5">
 
 				<f:facet name="header">
-					<p:commandButton value="Novo"
-						oncomplete="PF('dlgCadastroCidade').show();" />
+					<p:commandButton value="Novo" action="#{cidadeBean.novo}"
+						oncomplete="PF('dlgCadastroCidade').show();"
+						update=":message :frmCadastroCidade:pnlCadastroCidade" />
 				</f:facet>
 
-				<p:column headerText="Nome">
+				<p:column headerText="Nome" filterBy="#{cidade.nome}"
+					sortBy="#{cidade.nome}">
+					<h:outputText value="#{cidade.nome}" />
 				</p:column>
 
-				<p:column headerText="Estado">
+				<p:column headerText="Estado" filterBy="#{cidade.estado.sigla}"
+					sortBy="#{cidade.estado.sigla}">
+					<h:outputText value="#{cidade.estado.nome}" />
+					<h:outputText value=" - " />
+					<h:outputText value="#{cidade.estado.sigla}" />
 				</p:column>
 
 				<p:column headerText="Opções">
@@ -33,19 +41,24 @@
 
 	<p:dialog header="Cidades - Listagem" widgetVar="dlgCadastroCidade"
 		draggable="false" resizable="false" modal="true" closable="false">
-		<h:form>
-			<h:panelGrid columns="2">
+		<h:form id="frmCadastroCidade">
+			<h:panelGrid id="pnlCadastroCidade" columns="2">
 				<p:outputLabel value="Nome" />
-				<p:inputText maxlength="50" size="30" />
+				<p:inputText maxlength="50" size="30"
+					value="#{cidadeBean.cidade.nome}" />
 
 				<p:outputLabel value="Estado" />
-				<p:selectOneMenu filter="true">
+				<p:selectOneMenu filter="true" value="#{cidadeBean.cidade.estado}"
+					converter="omnifaces.SelectItemsConverter">
 					<f:selectItem itemValue="" itemLabel="Selecione um estado" />
+					<f:selectItems value="#{cidadeBean.estados}" var="estado"
+						itemValue="#{estado}" itemLabel="#{estado.nome} - #{estado.sigla}" />
 				</p:selectOneMenu>
 
 			</h:panelGrid>
 			<h:panelGrid columns="2">
-				<p:commandButton value="Salvar" />
+				<p:commandButton value="Salvar" actionListener="#{cidadeBean.salvar}"
+					update=":message :frmCadastroCidade:pnlCadastroCidade :frmListagemCidade:pnlListagemCidade"/>
 				<p:commandButton value="Fechar"
 					oncomplete="PF('dlgCadastroCidade').hide();" />
 			</h:panelGrid>

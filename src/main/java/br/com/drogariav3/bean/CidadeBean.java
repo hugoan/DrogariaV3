@@ -6,6 +6,7 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.event.ActionEvent;
 
 import org.omnifaces.util.Messages;
 
@@ -87,5 +88,31 @@ public class CidadeBean implements Serializable {
 			
 		}
 
+	}
+	
+	public void excluir(ActionEvent evento){
+		try{
+			cidade = (Cidade) evento.getComponent().getAttributes().get("cidadeSelecionado");
+
+			CidadeDAO cidadeDAO = new CidadeDAO();
+			cidadeDAO.excluir(cidade);
+			Messages.addGlobalInfo("Cidade removido com sucesso.");
+			cidades = cidadeDAO.listar();
+		}catch(RuntimeException erro){
+			Messages.addFlashGlobalError("Ocorreu um erro ao tentar remover a cidade");
+			erro.printStackTrace();
+		}
+		
+	}
+	
+	public void editar(ActionEvent evento){
+		try{
+			cidade = (Cidade) evento.getComponent().getAttributes().get("cidadeSelecionada");
+			
+			EstadoDAO estadoDAO = new EstadoDAO();
+			estados = estadoDAO.listar();
+		} catch(RuntimeException erro){
+			Messages.addFlashGlobalError("Ocorreu um erro ao tentar selecionar uma cidade");
+		}
 	}
 }

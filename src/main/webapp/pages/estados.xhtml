@@ -23,7 +23,9 @@
 			<f:facet name="header">
 					<p:commandButton value="Novo" actionListener="#{estadoBean.novo()}"
 						oncomplete="PF('dlgCadastroEstado').show();"
-						update=":formCadastroEstado:pnlCadastroEstado" />
+						update=":formCadastroEstado:pnlCadastroEstado">
+						<f:actionListener type="org.omnifaces.eventlistener.ResetInputAjaxActionListener" />
+					</p:commandButton>
 				</f:facet>
 
 				<p:column headerText="Nome" sortBy="#{estado.nome}"
@@ -49,6 +51,7 @@
 						update=":formCadastroEstado:pnlCadastroEstado"
 						oncomplete="PF('dlgCadastroEstado').show();">
 						<f:attribute name="estadoSelecionado" value="#{estado}" />
+						<f:actionListener type="org.omnifaces.eventlistener.ResetInputAjaxActionListener" />
 					</p:commandButton>
 				</p:column>
 
@@ -68,13 +71,15 @@
 		<h:form id="formCadastroEstado">
 
 			<h:panelGrid id="pnlCadastroEstado" columns="2">
-				<p:outputLabel value="Nome:" />
-				<p:inputText maxlength="50" size="30"
-					value="#{estadoBean.estado.nome}" />
+				<p:outputLabel for="nome" value="Nome:" />
+				<p:inputText id="nome" maxlength="50" size="30"
+					value="#{estadoBean.estado.nome}" required="true"
+					requiredMessage="O campo nome é obrigatório"/>
 
-				<p:outputLabel value="Sigla:" />
-				<p:inputText maxlength="2" size="5"
-					value="#{estadoBean.estado.sigla}" />
+				<p:outputLabel for="sigla" value="Sigla:" />
+				<p:inputText id="sigla" maxlength="2" size="5"
+					value="#{estadoBean.estado.sigla}" required="true"
+					requiredMessage="O campo sigla é obrigatório"/>
 			</h:panelGrid>
 
 			<h:panelGrid columns="2">

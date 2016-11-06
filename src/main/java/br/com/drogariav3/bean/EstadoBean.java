@@ -42,7 +42,7 @@ public class EstadoBean implements Serializable {
 	public void listar() {
 		try {
 			EstadoDAO estadoDAO = new EstadoDAO();
-			estados = estadoDAO.listar();
+			estados = estadoDAO.listar("nome");
 		} catch (RuntimeException erro) {
 			Messages.addGlobalError("Ocorreu um erro ao tentar listar os estados");
 			erro.printStackTrace();
@@ -62,7 +62,7 @@ public class EstadoBean implements Serializable {
 
 			Messages.addFlashGlobalInfo("Estado salvo com sucesso!");
 
-			estados = estadoDAO.listar();
+			estados = estadoDAO.listar("nome");
 		} catch (RuntimeException erro) {
 			Messages.addGlobalError("Ocorreu um erro ao tentar salvar um estado");
 			erro.printStackTrace();
@@ -76,7 +76,7 @@ public class EstadoBean implements Serializable {
 			EstadoDAO estadoDAO = new EstadoDAO();
 			estadoDAO.excluir(estado);
 			Messages.addGlobalInfo("Estado removido com sucesso.");
-			estados = estadoDAO.listar();
+			estados = estadoDAO.listar("nome");
 		} catch (RuntimeException erro) {
 			Messages.addGlobalError("Ocorreu um erro ao tentar remover o estado");
 			erro.printStackTrace();

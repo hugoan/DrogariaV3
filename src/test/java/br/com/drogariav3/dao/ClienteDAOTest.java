@@ -14,7 +14,7 @@ import br.com.drogariav3.domain.Pessoa;
 public class ClienteDAOTest {
 
 	@Test
-	@Ignore
+	
 	public void salvar() {
 		PessoaDAO pessoaDAO = new PessoaDAO();
 		Pessoa pessoa = pessoaDAO.buscar(2L);
@@ -92,6 +92,7 @@ public class ClienteDAOTest {
 	}
 
 	@Test
+	@Ignore
 	public void editar() {
 		Long codigo = 1L;
 

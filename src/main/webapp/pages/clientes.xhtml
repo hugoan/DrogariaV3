@@ -7,7 +7,7 @@
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<title>Clientes</title>
-	<h:outputScript library="js" name="scripts.js"/>
+	<h:outputScript library="js" name="scripts.js" />
 </h:head>
 <h:body>
 	<p:growl id="message" />
@@ -48,8 +48,32 @@
 				</p:column>
 
 				<p:column headerText="Opções">
+					<p:commandButton icon="ui-icon-trash"
+						actionListener="#{clienteBean.excluir}"
+						update=":message :frmListagemCliente:tblListagemCliente">
+						<p:confirm header="Confirmação"
+							message="Deseja excluir o cliente?" icon="ui-icon-alert" />
+						<f:attribute name="clienteSelecionado" value="#{cliente}" />
+					</p:commandButton>
+
+					<p:commandButton icon="ui-icon-pencil"
+						actionListener="#{clienteBean.editar}"
+						update=":message :frmCadastroCliente:pnlCadastroCliente"
+						oncomplete="PF('dlgCadastroCliente').show();">
+						<f:attribute name="clienteSelecionado" value="#{cliente}" />
+						<f:actionListener
+							type="org.omnifaces.eventlistener.ResetInputAjaxActionListener" />
+					</p:commandButton>
 				</p:column>
 			</p:dataTable>
+
+			<p:confirmDialog global="true">
+				<p:commandButton value="Sim" type="button"
+					styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+				<p:commandButton value="Não" type="button"
+					styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+			</p:confirmDialog>
+
 		</p:panel>
 	</h:form>
 
@@ -71,8 +95,8 @@
 				<p:outputLabel value="Data de cadastro" />
 				<p:calendar value="#{clienteBean.cliente.dataCadastro}"
 					required="true"
-					requiredMessage="O campo data de cadastro é obrigatório" size="8" 
-					locale="pt_BR"/>
+					requiredMessage="O campo data de cadastro é obrigatório" size="8"
+					locale="pt_BR" />
 
 				<p:outputLabel value="Ativo" />
 				<p:selectBooleanCheckbox value="#{clienteBean.cliente.liberado}"
@@ -81,13 +105,13 @@
 
 			<h:panelGrid columns="2">
 				<p:commandButton value="Salvar"
-					update=":message :frmCadastroCliente:pnlCadastroCliente :frmListagemCliente:tblListagemCliente" 
-					actionListener="#{clienteBean.salvar}"/>
+					update=":message :frmCadastroCliente:pnlCadastroCliente :frmListagemCliente:tblListagemCliente"
+					actionListener="#{clienteBean.salvar}" />
 				<p:commandButton value="Fechar"
 					oncomplete="PF('dlgCadastroCliente').hide();" />
 			</h:panelGrid>
 			
-			////// ATENÇÃO = FALTA O EXLCUIR E EIDATAR
+		
 
 		</h:form>
 	</p:dialog>
